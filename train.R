@@ -381,13 +381,66 @@ sample_rows <- clients_selected[sample(nrow(clients_selected), 10), ]
 sample_rows
 write_xlsx(sample_rows, "sample_rows.xlsx")
 
-########################
+########################fix
 
 
 
 clients_selected %>%
   filter(Last == "Rodriguez de la Rosa") %>%
-  pull(address)
+  pull(address, Zip)
 
 
 
+
+clients_selected <- clients_selected %>%
+  mutate(Zip = if_else(Last == "Rodriguez de la Rosa", "46526", Zip))
+
+
+
+clients_selected %>%
+  filter(Last == "Gonzalez Zuniga") %>%
+  pull(address, Zip)
+
+clients_selected <- clients_selected %>%
+  mutate(Zip = if_else(Last == "Gonzalez Zuniga", "46550", Zip))
+
+
+clients_selected %>%
+  filter(Last == "Cass") %>%
+  pull(address, Zip)
+
+clients_selected <- clients_selected %>%
+  mutate(Zip = if_else(Last == "Cass", "46507", Zip))
+
+
+clients_selected %>%
+  filter(Last == "Maax") %>%
+  pull(address, Zip)
+
+clients_selected <- clients_selected %>%
+  mutate(Zip = if_else(Last == "Maax", "46507", Zip))
+
+
+clients_selected %>%
+  filter(Last == "Peel") %>%
+  pull(address, Zip)
+
+clients_selected <- clients_selected %>%
+  mutate(Zip = if_else(Last == "Peel", "46550", Zip))
+
+clients_selected %>%
+  filter(Last == "Rios-Delacruz") %>%
+  pull(address, Zip)
+
+clients_selected <- clients_selected %>%
+  mutate(Zip = if_else(Last == "Rios-Delacruz", "46746", Zip))
+
+clients_selected %>%
+  filter(Last == "Daniels" & First == "Samiah") %>%
+  pull(address, Zip)
+
+clients_selected <- clients_selected %>%
+  mutate(Zip = if_else(Last == "Daniels" & First == "Samiah", "46526", Zip))
+
+
+write_xlsx(clients_selected, "clients_selected.xlsx")
